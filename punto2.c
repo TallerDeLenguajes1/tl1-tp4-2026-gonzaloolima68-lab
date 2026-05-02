@@ -10,36 +10,40 @@ int Duracion; // entre 10 – 100
 
 typedef struct Nodo{
 Tarea T;
-Nodo *Siguiente;
+struct Nodo *Siguiente;
 } Nodo;
 
-    
-Nodo * crearListaVacia(){
-    return NULL;
-}
+Nodo * crearListaVacia();
+Nodo *crearNodo(int id, char *ds,int time);
 
-Nodo *crearNodo (int id, char d,int du){
-    Nodo *Nnodo=(Nodo*)malloc(sizeof(Nodo));
-    Nnodo->T.Descripcion=d;
-    Nnodo->T.Duracion=du;
-    Nnodo->T.TareaID=id;
-    Nnodo->Siguiente=NULL;
-    return Nnodo;
 
-}
-
-void InsertarNodo(Nodo ** inicio,Nodo * Nnodo){
-    Nnodo->Siguiente=*inicio;
-    *inicio=Nnodo;
-}
 
 int main(){
 
-    Nodo *inicio=crearListaVacia();
+    Nodo * start=crearListaVacia();
 
    
 
 
     
     return 0;
+}
+
+
+Nodo * crearListaVacia(){
+    return NULL;
+}
+
+Nodo *crearNodo(int id, char *ds,int time){
+    Nodo * NuevoNodo=(Nodo*) malloc(sizeof(Nodo));
+
+    NuevoNodo->T.TareaID=id;
+    NuevoNodo->T.Descripcion=(char *)malloc(strlen(ds)+1);
+    strcpy(NuevoNodo->T.Descripcion,ds);
+    
+    
+    NuevoNodo->T.Duracion=time;
+    NuevoNodo->Siguiente=NULL;
+    return NuevoNodo;
+
 }
